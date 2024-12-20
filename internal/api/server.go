@@ -1,7 +1,9 @@
 package api
 
 import (
+	"fmt"
 	"jual-beli-barang-bekas/config"
+	"net/http"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -9,13 +11,15 @@ import (
 func StartServer(config config.AppConfig) {
 	app := fiber.New()
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Halo fiber")
-	})
+	fmt.Println("Server berjalan")
 
-	app.Get("/kocak", func(c *fiber.Ctx) error {
-		return c.JSON("aaa")
-	})
+	app.Get("/health", HealthCheck)
 
 	app.Listen(config.ServerPort)
+}
+
+func HealthCheck(ctx *fiber.Ctx) error {
+	return ctx.Status(http.StatusOK).JSON(fiber.Map{
+		"message": "Health Check Success",
+	})
 }
