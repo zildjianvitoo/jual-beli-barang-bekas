@@ -27,11 +27,6 @@ func SetupUserRoutes(rh *rest.RestHandler) {
 	app.Get("/profile", handler.GetProfile)
 	app.Post("/profile", handler.CreateProfile)
 
-	app.Get("/cart", handler.GetCart)
-	app.Post("/cart", handler.AddItemToCart)
-	app.Get("/order", handler.GetOrders)
-	app.Get("/order/:id", handler.GetOrderById)
-
 	app.Post("/become-seller", handler.BecomeSeller)
 
 }
@@ -69,30 +64,6 @@ func (h *UserHandler) GetProfile(ctx *fiber.Ctx) error {
 func (h *UserHandler) CreateProfile(ctx *fiber.Ctx) error {
 	return ctx.Status(http.StatusOK).JSON(fiber.Map{
 		"message": "Success create profile",
-	})
-}
-
-func (h *UserHandler) GetCart(ctx *fiber.Ctx) error {
-	return ctx.Status(http.StatusOK).JSON(fiber.Map{
-		"message": "Success get cart",
-	})
-}
-
-func (h *UserHandler) AddItemToCart(ctx *fiber.Ctx) error {
-	return ctx.Status(http.StatusOK).JSON(fiber.Map{
-		"message": "Success add item to cart",
-	})
-}
-
-func (h *UserHandler) GetOrders(ctx *fiber.Ctx) error {
-	return ctx.Status(http.StatusOK).JSON(fiber.Map{
-		"message": "Success Get all orders",
-	})
-}
-
-func (h *UserHandler) GetOrderById(ctx *fiber.Ctx) error {
-	return ctx.Status(http.StatusOK).JSON(fiber.Map{
-		"message": "Success get order by id",
 	})
 }
 

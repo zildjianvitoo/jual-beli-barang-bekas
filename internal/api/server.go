@@ -31,6 +31,7 @@ func HealthCheck(ctx *fiber.Ctx) error {
 
 func SetupRoutes(rh *rest.RestHandler) {
 	handlers.SetupUserRoutes(rh)
+	handlers.SetupCartRoutes(rh)
 	//	Transaction
 	//	Catalog
 }
