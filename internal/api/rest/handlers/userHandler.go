@@ -3,6 +3,7 @@ package handlers
 import (
 	"jual-beli-barang-bekas/internal/api/rest"
 	"jual-beli-barang-bekas/internal/dto"
+	"jual-beli-barang-bekas/internal/repository"
 	"jual-beli-barang-bekas/internal/service"
 	"net/http"
 
@@ -17,7 +18,11 @@ func SetupUserRoutes(rh *rest.RestHandler) {
 
 	app := rh.App
 
-	service := service.UserService{}
+	repo := repository.NewUserRepository(rh.DB)
+
+	service := service.UserService{
+		Repo: repo,
+	}
 
 	handler := UserHandler{
 		service: service,
@@ -56,13 +61,35 @@ func (h *UserHandler) Register(ctx *fiber.Ctx) error {
 
 	return ctx.Status(http.StatusOK).JSON(fiber.Map{
 		"message": "Register success",
-		"data":    token,
+		"data": fiber.Map{
+			"token": token,
+		},
 	})
 }
 
 func (h *UserHandler) Login(ctx *fiber.Ctx) error {
+
+	loginInput := dto.UserLogin{}
+
+	err := ctx.BodyParser(&loginInput)
+	if err != nil {
+		return ctx.Status(http.StatusBadRequest).JSON(fiber.Map{
+			"message": "Please provide valid inputs",
+		})
+	}
+
+	token, err := h.service.Login(loginInput)
+	if err != nil {
+		return ctx.Status(http.StatusUnauthorized).JSON(fiber.Map{
+			"message": "Wrong email/password",
+		})
+	}
+
 	return ctx.Status(http.StatusOK).JSON(fiber.Map{
 		"message": "Login success",
+		"data": fiber.Map{
+			"token": token,
+		},
 	})
 }
 

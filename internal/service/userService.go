@@ -1,27 +1,43 @@
 package service
 
 import (
+	"errors"
+	"fmt"
 	"jual-beli-barang-bekas/internal/domain"
 	"jual-beli-barang-bekas/internal/dto"
-	"log"
+	"jual-beli-barang-bekas/internal/repository"
 )
 
 type UserService struct {
+	Repo repository.UserRepository
 }
 
 func (s UserService) Register(input dto.UserRegister) (string, error) {
-	log.Println(input)
-	return "tokenennaenamea", nil
+	user, err := s.Repo.CreateUser(domain.User{
+		Email:    input.Email,
+		Password: input.Password,
+		Phone:    input.Phone,
+	})
+	userData := fmt.Sprint(user.Email, " ", user.Phone)
+	// generate token
+
+	return userData, err
 }
 
-func (s UserService) Login(input any) (string, error) {
-	return "", nil
+func (s UserService) Login(loginInput dto.UserLogin) (string, error) {
+	user, err := s.Repo.GetUser(loginInput.Email)
+
+	if err != nil {
+		return "", errors.New("user does not exist")
+	}
+
+	return user.Email, nil
 }
 
 func (s UserService) getUserByEmail(email string) (*domain.User, error) {
-	// Business Logic
+	user, err := s.Repo.GetUser(email)
 
-	return nil, nil
+	return &user, err
 }
 
 func (s UserService) GetVerificationCode(e domain.User) (int, error) {
@@ -33,6 +49,7 @@ func (s UserService) DoVerify(id uint, code uint) error {
 }
 
 func (s UserService) GetProfile(userId uint) (*domain.User, error) {
+
 	return nil, nil
 }
 
