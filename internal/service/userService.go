@@ -2,14 +2,16 @@ package service
 
 import (
 	"jual-beli-barang-bekas/internal/domain"
+	"jual-beli-barang-bekas/internal/dto"
+	"log"
 )
 
 type UserService struct {
 }
 
-func (s UserService) Register(input any) (string, error) {
-
-	return "", nil
+func (s UserService) Register(input dto.UserRegister) (string, error) {
+	log.Println(input)
+	return "tokenennaenamea", nil
 }
 
 func (s UserService) Login(input any) (string, error) {
