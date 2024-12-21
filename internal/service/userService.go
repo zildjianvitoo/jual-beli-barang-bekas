@@ -1,6 +1,8 @@
 package service
 
-import "jual-beli-barang-bekas/internal/domain"
+import (
+	"jual-beli-barang-bekas/internal/domain"
+)
 
 type UserService struct {
 }
@@ -14,7 +16,7 @@ func (s UserService) Login(input any) (string, error) {
 	return "", nil
 }
 
-func (s UserService) GetUserByEmail(email string) (*domain.User, error) {
+func (s UserService) getUserByEmail(email string) (*domain.User, error) {
 	// Business Logic
 
 	return nil, nil
@@ -28,18 +30,18 @@ func (s UserService) DoVerify(id uint, code uint) error {
 	return nil
 }
 
-func (s UserService) GetProfile(id uint) (*domain.User, error) {
+func (s UserService) GetProfile(userId uint) (*domain.User, error) {
 	return nil, nil
 }
 
-func (s UserService) CreateProfile(id uint, input any) error {
+func (s UserService) CreateProfile(userId uint, input any) error {
 	return nil
 }
 
-func (s UserService) UpdateProfile(id uint, input any) error {
+func (s UserService) UpdateProfile(userId uint, input any) error {
 	return nil
 }
 
-func (s UserService) BecomeSeller(id uint, input any) (string, error) {
+func (s UserService) BecomeSeller(userId uint, input any) (string, error) {
 	return "", nil
 }
