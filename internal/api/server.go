@@ -4,29 +4,33 @@ import (
 	"jual-beli-barang-bekas/config"
 	"jual-beli-barang-bekas/internal/api/rest"
 	"jual-beli-barang-bekas/internal/api/rest/handlers"
-	"net/http"
+	"jual-beli-barang-bekas/internal/domain"
+	"log"
 
 	"github.com/gofiber/fiber/v2"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 func StartServer(config config.AppConfig) {
 	app := fiber.New()
 
-	app.Get("/health", HealthCheck)
+	db, err := gorm.Open(postgres.Open(config.DatasourceName), &gorm.Config{})
+
+	if err != nil {
+		log.Fatalf("Database not connected %v\n", err)
+	}
+
+	db.AutoMigrate(&domain.User{})
 
 	restHandler := &rest.RestHandler{
 		App: app,
+		DB:  db,
 	}
 
 	SetupRoutes(restHandler)
 
 	app.Listen(config.ServerPort)
-}
-
-func HealthCheck(ctx *fiber.Ctx) error {
-	return ctx.Status(http.StatusOK).JSON(fiber.Map{
-		"message": "Health check success",
-	})
 }
 
 func SetupRoutes(rh *rest.RestHandler) {
