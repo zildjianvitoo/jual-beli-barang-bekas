@@ -2,36 +2,51 @@ package service
 
 import (
 	"errors"
-	"fmt"
 	"jual-beli-barang-bekas/internal/domain"
 	"jual-beli-barang-bekas/internal/dto"
+	"jual-beli-barang-bekas/internal/helper"
 	"jual-beli-barang-bekas/internal/repository"
 )
 
 type UserService struct {
 	Repo repository.UserRepository
+	Auth helper.Auth
 }
 
 func (s UserService) Register(input dto.UserRegister) (string, error) {
+	hashedPassword, err := s.Auth.CreateHashedPassword(input.Password)
+
+	if err != nil {
+		return "", err
+	}
+
 	user, err := s.Repo.CreateUser(domain.User{
 		Email:    input.Email,
-		Password: input.Password,
+		Password: hashedPassword,
 		Phone:    input.Phone,
 	})
-	userData := fmt.Sprint(user.Email, " ", user.Phone)
-	// generate token
 
-	return userData, err
+	if err != nil {
+		return "", err
+	}
+
+	return s.Auth.GenerateToken(user.ID, user.Email, user.UserType)
 }
 
 func (s UserService) Login(loginInput dto.UserLogin) (string, error) {
-	user, err := s.Repo.GetUser(loginInput.Email)
+	user, err := s.getUserByEmail(loginInput.Email)
 
 	if err != nil {
 		return "", errors.New("user does not exist")
 	}
 
-	return user.Email, nil
+	err = s.Auth.VerifyPassword(loginInput.Password, user.Password)
+
+	if err != nil {
+		return "", err
+	}
+
+	return s.Auth.GenerateToken(user.ID, user.Email, user.UserType)
 }
 
 func (s UserService) getUserByEmail(email string) (*domain.User, error) {

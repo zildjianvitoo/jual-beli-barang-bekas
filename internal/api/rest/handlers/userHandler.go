@@ -22,6 +22,7 @@ func SetupUserRoutes(rh *rest.RestHandler) {
 
 	service := service.UserService{
 		Repo: repo,
+		Auth: rh.Auth,
 	}
 
 	handler := UserHandler{

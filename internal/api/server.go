@@ -5,6 +5,7 @@ import (
 	"jual-beli-barang-bekas/internal/api/rest"
 	"jual-beli-barang-bekas/internal/api/rest/handlers"
 	"jual-beli-barang-bekas/internal/domain"
+	"jual-beli-barang-bekas/internal/helper"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
@@ -23,9 +24,12 @@ func StartServer(config config.AppConfig) {
 
 	db.AutoMigrate(&domain.User{})
 
+	appSecret := helper.SetupAuth(config.AppSecret)
+
 	restHandler := &rest.RestHandler{
-		App: app,
-		DB:  db,
+		App:  app,
+		DB:   db,
+		Auth: appSecret,
 	}
 
 	SetupRoutes(restHandler)
