@@ -2,17 +2,18 @@ package service
 
 import (
 	"errors"
+	"jual-beli-barang-bekas/config"
 	"jual-beli-barang-bekas/internal/domain"
 	"jual-beli-barang-bekas/internal/dto"
 	"jual-beli-barang-bekas/internal/helper"
 	"jual-beli-barang-bekas/internal/repository"
-	"log"
 	"time"
 )
 
 type UserService struct {
-	Repo repository.UserRepository
-	Auth helper.Auth
+	Repo   repository.UserRepository
+	Auth   helper.Auth
+	Config config.AppConfig
 }
 
 func (s UserService) Register(input dto.UserRegister) (string, error) {
@@ -103,7 +104,6 @@ func (s UserService) GetVerificationCode(e domain.User) (int, error) {
 
 func (s UserService) DoVerify(id uint, code int) error {
 	if s.isVerifiedUser(id) {
-		log.Println("verified...")
 		return errors.New("user already verified")
 	}
 
