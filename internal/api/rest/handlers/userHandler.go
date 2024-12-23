@@ -5,6 +5,7 @@ import (
 	"jual-beli-barang-bekas/internal/dto"
 	"jual-beli-barang-bekas/internal/repository"
 	"jual-beli-barang-bekas/internal/service"
+	"log"
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"
@@ -30,16 +31,20 @@ func SetupUserRoutes(rh *rest.RestHandler) {
 	}
 
 	// Public endpoint
-	app.Post("/register", handler.Register)
-	app.Post("/login", handler.Login)
+	publicRoutes := app.Group("/users")
+
+	publicRoutes.Post("/register", handler.Register)
+	publicRoutes.Post("/login", handler.Login)
 
 	// Private endpoint
-	app.Get("/verify", handler.GetVerificationCode)
-	app.Post("/verify", handler.DoVerify)
-	app.Get("/profile", handler.GetProfile)
-	app.Post("/profile", handler.CreateProfile)
+	privateRoutes := app.Group("/users", rh.Auth.Authorize)
 
-	app.Post("/become-seller", handler.BecomeSeller)
+	privateRoutes.Get("/verify", handler.GetVerificationCode)
+	privateRoutes.Post("/verify", handler.DoVerify)
+	privateRoutes.Get("/profile", handler.GetProfile)
+	privateRoutes.Post("/profile", handler.CreateProfile)
+
+	privateRoutes.Post("/become-seller", handler.BecomeSeller)
 
 }
 
@@ -95,26 +100,83 @@ func (h *UserHandler) Login(ctx *fiber.Ctx) error {
 }
 
 func (h *UserHandler) GetVerificationCode(ctx *fiber.Ctx) error {
-	return ctx.Status(http.StatusOK).JSON(fiber.Map{
-		"message": "Verification code sent",
+	user := h.service.Auth.GetCurrentUser(ctx)
+	log.Println(user)
+
+	code, err := h.service.GetVerificationCode(user)
+	log.Println(err)
+
+	if err != nil {
+		return ctx.Status(http.StatusInternalServerError).JSON(&fiber.Map{
+			"message": "Unable to generate verification code",
+		})
+	}
+
+	return ctx.Status(http.StatusOK).JSON(&fiber.Map{
+		"message": "Success getting verification code",
+		"data": fiber.Map{
+			"code": code,
+		},
 	})
 }
 
 func (h *UserHandler) DoVerify(ctx *fiber.Ctx) error {
-	return ctx.Status(http.StatusOK).JSON(fiber.Map{
-		"message": "Verify success",
+	user := h.service.Auth.GetCurrentUser(ctx)
+
+	var req dto.VerificationCodeInput
+
+	err := ctx.BodyParser(&req)
+
+	if err != nil {
+		return ctx.Status(http.StatusBadRequest).JSON(&fiber.Map{
+			"message": "Please provide a valid input",
+		})
+	}
+
+	err = h.service.DoVerify(user.ID, req.Code)
+
+	if err != nil {
+		return ctx.Status(http.StatusBadRequest).JSON(&fiber.Map{
+			"message": err.Error(),
+		})
+	}
+
+	return ctx.Status(http.StatusOK).JSON(&fiber.Map{
+		"message": "Verified success",
 	})
 }
 
 func (h *UserHandler) GetProfile(ctx *fiber.Ctx) error {
+	user := h.service.Auth.GetCurrentUser(ctx)
+
 	return ctx.Status(http.StatusOK).JSON(fiber.Map{
 		"message": "Success get profile",
+		"data": fiber.Map{
+			"user": user,
+		},
 	})
 }
 
 func (h *UserHandler) CreateProfile(ctx *fiber.Ctx) error {
-	return ctx.Status(http.StatusOK).JSON(fiber.Map{
-		"message": "Success create profile",
+	user := h.service.Auth.GetCurrentUser(ctx)
+	req := dto.ProfileInput{}
+	if err := ctx.BodyParser(&req); err != nil {
+		return ctx.Status(http.StatusBadRequest).JSON(&fiber.Map{
+			"message": "Please provide a valid input",
+		})
+	}
+	log.Printf("User %v", user)
+
+	err := h.service.CreateProfile(user.ID, req)
+
+	if err != nil {
+		return ctx.Status(http.StatusInternalServerError).JSON(&fiber.Map{
+			"message": "Unable to create profile",
+		})
+	}
+
+	return ctx.Status(http.StatusOK).JSON(&fiber.Map{
+		"message": "Profile created successfully",
 	})
 }
 

@@ -6,6 +6,8 @@ import (
 	"jual-beli-barang-bekas/internal/dto"
 	"jual-beli-barang-bekas/internal/helper"
 	"jual-beli-barang-bekas/internal/repository"
+	"log"
+	"time"
 )
 
 type UserService struct {
@@ -55,11 +57,80 @@ func (s UserService) getUserByEmail(email string) (*domain.User, error) {
 	return &user, err
 }
 
-func (s UserService) GetVerificationCode(e domain.User) (int, error) {
-	return 0, nil
+func (s UserService) isVerifiedUser(id uint) bool {
+
+	currentUser, err := s.Repo.GetUserById(id)
+
+	return err == nil && currentUser.Verified
 }
 
-func (s UserService) DoVerify(id uint, code uint) error {
+func (s UserService) GetVerificationCode(e domain.User) (int, error) {
+	if s.isVerifiedUser(e.ID) {
+		return 0, errors.New("user already verified")
+	}
+
+	code, err := s.Auth.GenerateCode()
+	if err != nil {
+		return 0, err
+	}
+
+	// update user
+	user := domain.User{
+		Expiry: time.Now().Add(30 * time.Minute),
+		Code:   code,
+	}
+
+	_, err = s.Repo.UpdateUser(e.ID, user)
+
+	if err != nil {
+		return 0, errors.New("unable to update verification code")
+	}
+
+	user, _ = s.Repo.GetUserById(e.ID)
+
+	// send SMS
+	// notificationClient := notification.NewNotificationClient(s.Config)
+
+	// msg := fmt.Sprintf("Your verification code is %v", code)
+
+	// err = notificationClient.SendSMS(user.Phone, msg)
+	if err != nil {
+		return 0, errors.New("error on sending sms")
+	}
+
+	return code, nil
+}
+
+func (s UserService) DoVerify(id uint, code int) error {
+	if s.isVerifiedUser(id) {
+		log.Println("verified...")
+		return errors.New("user already verified")
+	}
+
+	user, err := s.Repo.GetUserById(id)
+
+	if err != nil {
+		return err
+	}
+
+	if user.Code != code {
+		return errors.New("verification code does not match")
+	}
+
+	if !time.Now().Before(user.Expiry) {
+		return errors.New("verification code expired")
+	}
+
+	updateUser := domain.User{
+		Verified: true,
+	}
+
+	_, err = s.Repo.UpdateUser(id, updateUser)
+
+	if err != nil {
+		return errors.New("unable to verify user")
+	}
+
 	return nil
 }
 

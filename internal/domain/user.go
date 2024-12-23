@@ -10,6 +10,7 @@ type User struct {
 	Password  string    `json:"password"`
 	Phone     string    `json:"phone"`
 	Expiry    time.Time `json:"expiry"`
+	Code      int       `json:"code"`
 	Verified  bool      `json:"is_verified" gorm:"default:false"`
 	UserType  string    `json:"user_type" gorm:"default:buyer"`
 	CreateAt  time.Time `json:"created_at"`

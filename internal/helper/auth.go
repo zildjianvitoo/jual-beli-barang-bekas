@@ -23,6 +23,10 @@ func SetupAuth(secret string) Auth {
 	}
 }
 
+func (a Auth) GenerateCode() (int, error) {
+	return RandomNumbers(6)
+}
+
 func (a Auth) CreateHashedPassword(password string) (string, error) {
 
 	if len(password) < 6 {
@@ -115,18 +119,28 @@ func (a Auth) VerifyToken(t string) (domain.User, error) {
 
 func (a Auth) Authorize(ctx *fiber.Ctx) error {
 
-	authHeader := ctx.GetReqHeaders()["Authorization"]
-	user, err := a.VerifyToken(authHeader[0])
-
-	if err == nil && user.ID > 0 {
-		ctx.Locals("user", user)
-		return ctx.Next()
-	} else {
+	authHeader := ctx.Get("Authorization")
+	if authHeader == "" {
 		return ctx.Status(401).JSON(&fiber.Map{
 			"message": "authorization failed",
-			"reason":  err,
+			"reason":  "missing Authorization header",
 		})
 	}
+
+	user, err := a.VerifyToken(authHeader)
+	if err != nil || user.ID <= 0 {
+		reason := "invalid token"
+		if err != nil {
+			reason = err.Error()
+		}
+		return ctx.Status(401).JSON(&fiber.Map{
+			"message": "authorization failed",
+			"reason":  reason,
+		})
+	}
+
+	ctx.Locals("user", user)
+	return ctx.Next()
 
 }
 
