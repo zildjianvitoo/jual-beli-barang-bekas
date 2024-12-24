@@ -54,24 +54,18 @@ func (h *UserHandler) Register(ctx *fiber.Ctx) error {
 
 	err := ctx.BodyParser(&user)
 	if err != nil {
-		return ctx.Status(http.StatusBadRequest).JSON(fiber.Map{
-			"message": "Please provide valid inputs",
-		})
+		return rest.BadRequestError(ctx, "Please provide valid input")
 	}
 
 	token, err := h.service.Register(user)
 	if err != nil {
-		return ctx.Status(http.StatusInternalServerError).JSON(fiber.Map{
-			"message": "Error on signup",
-		})
+		return rest.InternalError(ctx, err)
 	}
 
-	return ctx.Status(http.StatusOK).JSON(fiber.Map{
-		"message": "Register success",
-		"data": fiber.Map{
-			"token": token,
-		},
+	return rest.SuccessResponse(ctx, "Register success", fiber.Map{
+		"token": token,
 	})
+
 }
 
 func (h *UserHandler) Login(ctx *fiber.Ctx) error {
@@ -80,23 +74,16 @@ func (h *UserHandler) Login(ctx *fiber.Ctx) error {
 
 	err := ctx.BodyParser(&loginInput)
 	if err != nil {
-		return ctx.Status(http.StatusBadRequest).JSON(fiber.Map{
-			"message": "Please provide valid inputs",
-		})
+		return rest.BadRequestError(ctx, "Please provide valid input")
 	}
 
 	token, err := h.service.Login(loginInput)
 	if err != nil {
-		return ctx.Status(http.StatusUnauthorized).JSON(fiber.Map{
-			"message": "Wrong email/password",
-		})
+		return rest.ErrorMessage(ctx, http.StatusUnauthorized, err)
 	}
 
-	return ctx.Status(http.StatusOK).JSON(fiber.Map{
-		"message": "Login success",
-		"data": fiber.Map{
-			"token": token,
-		},
+	return rest.SuccessResponse(ctx, "Login success", fiber.Map{
+		"token": token,
 	})
 }
 
@@ -108,16 +95,11 @@ func (h *UserHandler) GetVerificationCode(ctx *fiber.Ctx) error {
 	log.Println(err)
 
 	if err != nil {
-		return ctx.Status(http.StatusInternalServerError).JSON(&fiber.Map{
-			"message": "Unable to generate verification code",
-		})
+		return rest.InternalError(ctx, err)
 	}
 
-	return ctx.Status(http.StatusOK).JSON(&fiber.Map{
-		"message": "Success getting verification code",
-		"data": fiber.Map{
-			"code": code,
-		},
+	return rest.SuccessResponse(ctx, "Success getting verification code", fiber.Map{
+		"code": code,
 	})
 }
 
@@ -129,55 +111,44 @@ func (h *UserHandler) DoVerify(ctx *fiber.Ctx) error {
 	err := ctx.BodyParser(&req)
 
 	if err != nil {
-		return ctx.Status(http.StatusBadRequest).JSON(&fiber.Map{
-			"message": "Please provide a valid input",
-		})
+		return rest.BadRequestError(ctx, "Please provide valid input")
 	}
 
 	err = h.service.DoVerify(user.ID, req.Code)
 
 	if err != nil {
-		return ctx.Status(http.StatusBadRequest).JSON(&fiber.Map{
-			"message": err.Error(),
-		})
+		return rest.BadRequestError(ctx, "Please provide valid input")
 	}
 
-	return ctx.Status(http.StatusOK).JSON(&fiber.Map{
-		"message": "Verified success",
-	})
+	return rest.SuccessResponse(ctx, "Verification successfully", fiber.Map{})
 }
 
 func (h *UserHandler) GetProfile(ctx *fiber.Ctx) error {
 	user := h.service.Auth.GetCurrentUser(ctx)
 
-	return ctx.Status(http.StatusOK).JSON(fiber.Map{
-		"message": "Success get profile",
-		"data": fiber.Map{
-			"user": user,
-		},
+	return rest.SuccessResponse(ctx, "Success get profile", fiber.Map{
+		"user": user,
 	})
 }
 
 func (h *UserHandler) CreateProfile(ctx *fiber.Ctx) error {
 	user := h.service.Auth.GetCurrentUser(ctx)
+
 	req := dto.ProfileInput{}
+
 	if err := ctx.BodyParser(&req); err != nil {
-		return ctx.Status(http.StatusBadRequest).JSON(&fiber.Map{
-			"message": "Please provide a valid input",
-		})
+		return rest.BadRequestError(ctx, "Please provide valid input")
 	}
 	log.Printf("User %v", user)
 
 	err := h.service.CreateProfile(user.ID, req)
 
 	if err != nil {
-		return ctx.Status(http.StatusInternalServerError).JSON(&fiber.Map{
-			"message": "Unable to create profile",
-		})
+		return rest.InternalError(ctx, err)
 	}
 
-	return ctx.Status(http.StatusOK).JSON(&fiber.Map{
-		"message": "Profile created successfully",
+	return rest.SuccessResponse(ctx, "Profile created successfully", fiber.Map{
+		"user": user,
 	})
 }
 
@@ -188,22 +159,16 @@ func (h *UserHandler) BecomeSeller(ctx *fiber.Ctx) error {
 	req := dto.BecomeSellerInput{}
 	err := ctx.BodyParser(&req)
 	if err != nil {
-		return ctx.Status(http.StatusBadRequest).JSON(&fiber.Map{
-			"message": "Request params not valid",
-		})
+		return rest.BadRequestError(ctx, "Please provide valid input")
 	}
 
 	token, err := h.service.BecomeSeller(user.ID, req)
 	if err != nil {
-		return ctx.Status(http.StatusUnauthorized).JSON(fiber.Map{
-			"message": "Failed become seller",
-		})
+		return rest.ErrorMessage(ctx, http.StatusUnauthorized, err)
 	}
 
-	return ctx.Status(http.StatusOK).JSON(fiber.Map{
-		"message": "Success become seller",
-		"data": fiber.Map{
-			"token": token,
-		},
+	return rest.SuccessResponse(ctx, "Success become seller", fiber.Map{
+		"token": token,
 	})
+
 }

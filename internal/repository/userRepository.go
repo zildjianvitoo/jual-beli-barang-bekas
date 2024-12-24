@@ -14,7 +14,7 @@ type UserRepository interface {
 	GetUser(email string) (domain.User, error)
 	GetUserById(userId uint) (domain.User, error)
 	UpdateUser(userId uint, user domain.User) (domain.User, error)
-	CreateBankAccount(entity domain.BankAccount) error
+	CreateBankAccount(e domain.BankAccount) error
 
 	// TODO: selesaikan
 }
@@ -78,6 +78,6 @@ func (r userRepository) UpdateUser(userId uint, userInput domain.User) (domain.U
 	return user, nil
 }
 
-func (r userRepository) CreateBankAccount(entity domain.BankAccount) error {
-	return r.db.Create(&entity).Error
+func (r userRepository) CreateBankAccount(e domain.BankAccount) error {
+	return r.db.Create(&e).Error
 }

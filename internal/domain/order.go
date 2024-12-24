@@ -11,6 +11,6 @@ type Order struct {
 	OrderRefNumber uint    `json:"order_ref_number"`
 	PaymentId      string  `json:"payment_id"`
 	// Items          []OrderItem `json:"items"`
-	CreatedAt time.Time `gorm:"default:current_timestamp"`
-	UpdatedAt time.Time `gorm:"default:current_timestamp"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 }

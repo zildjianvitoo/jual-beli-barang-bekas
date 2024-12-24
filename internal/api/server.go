@@ -22,7 +22,7 @@ func StartServer(config config.AppConfig) {
 		log.Fatalf("Database not connected %v\n", err)
 	}
 
-	err = db.AutoMigrate(&domain.User{}, &domain.BankAccount{})
+	err = db.AutoMigrate(&domain.User{}, &domain.BankAccount{}, &domain.Category{}, &domain.Product{})
 
 	if err != nil {
 		log.Fatalf("Error migration %v", err)
@@ -46,6 +46,6 @@ func SetupRoutes(rh *rest.RestHandler) {
 	handlers.SetupUserRoutes(rh)
 	handlers.SetupCartRoutes(rh)
 	handlers.SetupOrderRoutes(rh)
+	handlers.SetupCatalogRoutes(rh)
 	//	Transaction
-	//	Catalog
 }

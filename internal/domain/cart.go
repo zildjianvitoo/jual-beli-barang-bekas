@@ -11,6 +11,6 @@ type Cart struct {
 	SellerId  uint      `json:"seller_id"`
 	Price     float64   `json:"price"`
 	Qty       uint      `json:"qty"`
-	CreatedAt time.Time `gorm:"default:current_timestamp"`
-	UpdatedAt time.Time `gorm:"default:current_timestamp"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 }
