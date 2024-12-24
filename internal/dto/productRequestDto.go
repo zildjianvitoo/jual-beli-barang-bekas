@@ -8,7 +8,3 @@ type CreateProductRequest struct {
 	Price       float64 `json:"price"`
 	Stock       int     `json:"stock"`
 }
-
-type UpdateStockRequest struct {
-	Stock int `json:"stock"`
-}

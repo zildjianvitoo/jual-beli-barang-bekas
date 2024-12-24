@@ -104,7 +104,7 @@ func (s CatalogService) EditProduct(id int, input dto.CreateProductRequest, user
 		return nil, errors.New("product does not exist")
 	}
 
-	// verify product owner
+	// Verify product owner
 	if exitProduct.UserId != int(user.ID) {
 		return nil, errors.New("you dont have manage rights of this product")
 	}
@@ -136,9 +136,9 @@ func (s CatalogService) DeleteProduct(id int, user domain.User) error {
 		return errors.New("product does not exist")
 	}
 
-	// verify product owner
+	// Verify product owner
 	if exitProduct.UserId != int(user.ID) {
-		return errors.New("you don't have manage rights of this product")
+		return errors.New("you dont have manage rights of this product")
 	}
 
 	err = s.Repo.DeleteProduct(exitProduct)
