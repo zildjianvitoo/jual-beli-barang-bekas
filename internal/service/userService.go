@@ -95,9 +95,9 @@ func (s UserService) GetVerificationCode(e domain.User) (int, error) {
 	// msg := fmt.Sprintf("Your verification code is %v", code)
 
 	// err = notificationClient.SendSMS(user.Phone, msg)
-	if err != nil {
-		return 0, errors.New("error on sending sms")
-	}
+	// if err != nil {
+	// 	return 0, errors.New("error on sending sms")
+	// }
 
 	return code, nil
 }
@@ -147,6 +147,37 @@ func (s UserService) UpdateProfile(userId uint, input any) error {
 	return nil
 }
 
-func (s UserService) BecomeSeller(userId uint, input any) (string, error) {
-	return "", nil
+func (s UserService) BecomeSeller(userId uint, input dto.BecomeSellerInput) (string, error) {
+	user, _ := s.Repo.GetUserById(userId)
+
+	if user.UserType == domain.SELLER {
+		return "", errors.New("you have already joined seller program")
+	}
+
+	// update user
+	seller, err := s.Repo.UpdateUser(userId, domain.User{
+		FirstName: input.FirstName,
+		LastName:  input.LastName,
+		Phone:     input.PhoneNumber,
+		UserType:  domain.SELLER,
+	})
+
+	if err != nil {
+		return "", err
+	}
+
+	// generating token
+	token, err := s.Auth.GenerateToken(user.ID, user.Email, seller.UserType)
+	if err != nil {
+		return "", err
+	}
+	// create bank account information
+	err = s.Repo.CreateBankAccount(domain.BankAccount{
+		BankAccount: input.BankAccountNumber,
+		SwiftCode:   input.SwiftCode,
+		PaymentType: input.PaymentType,
+		UserId:      userId,
+	})
+
+	return token, err
 }

@@ -182,7 +182,28 @@ func (h *UserHandler) CreateProfile(ctx *fiber.Ctx) error {
 }
 
 func (h *UserHandler) BecomeSeller(ctx *fiber.Ctx) error {
+
+	user := h.service.Auth.GetCurrentUser(ctx)
+
+	req := dto.BecomeSellerInput{}
+	err := ctx.BodyParser(&req)
+	if err != nil {
+		return ctx.Status(http.StatusBadRequest).JSON(&fiber.Map{
+			"message": "Request params not valid",
+		})
+	}
+
+	token, err := h.service.BecomeSeller(user.ID, req)
+	if err != nil {
+		return ctx.Status(http.StatusUnauthorized).JSON(fiber.Map{
+			"message": "Failed become seller",
+		})
+	}
+
 	return ctx.Status(http.StatusOK).JSON(fiber.Map{
 		"message": "Success become seller",
+		"data": fiber.Map{
+			"token": token,
+		},
 	})
 }
