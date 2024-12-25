@@ -13,7 +13,7 @@
 
 # The interesting parts in this app
 
-To make this app scalable, I built the backend system for a second-hand goods marketplace with a focus on achieving low latencies. To achieve this, I optimized the application to ensure it handles high traffic efficiently. However, due to time constraints, there are still some parts I couldnt complete within two weeks.
+To make this app scalable, I built the backend system for a second-hand goods marketplace with a focus on achieving low latencies. To achieve this, I optimized the application to ensure it handles high traffic efficiently. However, due to time constraints, there are still some parts I couldnt complete within 1 week.
 
 # API Documentation
 
