@@ -27,9 +27,9 @@ func SetupCartRoutes(rh *rest.RestHandler) {
 		service: service,
 	}
 
-	app.Get("/cart", rh.Auth.Authorize, handler.GetCart)
-	app.Post("/cart", rh.Auth.Authorize, handler.ManageItemOnCart)
-	app.Patch("/cart", rh.Auth.Authorize, handler.ManageItemOnCart)
+	app.Get("/carts", rh.Auth.Authorize, handler.GetCart)
+	app.Post("/carts", rh.Auth.Authorize, handler.ManageItemOnCart)
+	app.Patch("/carts", rh.Auth.Authorize, handler.ManageItemOnCart)
 }
 
 func (h *CartHandler) GetCart(ctx *fiber.Ctx) error {
