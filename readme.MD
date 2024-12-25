@@ -15,10 +15,10 @@
 
 To make this app scalable, I built the backend system for a second-hand goods marketplace with a focus on achieving low latencies. To achieve this, I optimized the application to ensure it handles high traffic efficiently. However, due to time constraints, there are still some parts I couldnt complete within two weeks.
 
-<!-- # API Documentation
+# API Documentation
 
-Please find the ``, and import it to your postman
-to test the API. -->
+Please find the `Jual Beli Barang Bekas.postman_collection.json` file, and import it to your postman
+to test the API.
 
 # Directory Structure
 
