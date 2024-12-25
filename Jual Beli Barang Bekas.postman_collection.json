@@ -50,7 +50,57 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Become Seller",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n \"first_name\": \"Jay\",\n \"last_name\": \"Gogoi\",\n \"phone_number\": \"9090909090\",\n \"bankAccountNumber\": 123456789,\n \"swiftCode\":\"DB120029\",\n \"paymentType\": \"regular\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/users/become-seller",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"users",
+												"become-seller"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Wed, 25 Dec 2024 15:11:25 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "247"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InppbGRqaWFudml0bzExMTFnbWFpbC5jb20iLCJleHAiOjE3Mzc3MzE0ODYsInJvbGUiOiJzZWxsZXIiLCJ1c2VyX2lkIjoyOX0.OzrvNd6UFxagDYmdwhawZvT9xqSKnqG6HK5hnfbjRB0\"\n    },\n    \"message\": \"Success become seller\"\n}"
+								}
+							]
 						},
 						{
 							"name": "Get Product by ID",
@@ -83,7 +133,57 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Get Product by ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/products/5",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"products",
+												"5"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Wed, 25 Dec 2024 15:15:25 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "273"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"id\": 5,\n        \"name\": \"MacbookPro 16 inch\",\n        \"description\": \"refurbished laptop\",\n        \"category_id\": 2,\n        \"image_url\": \"411asas1\",\n        \"price\": 1400,\n        \"user_id\": 29,\n        \"created_at\": \"2024-12-25T22:13:54.087938+07:00\",\n        \"updated_at\": \"2024-12-25T22:15:06.469928+07:00\"\n    },\n    \"message\": \"Success get product\"\n}"
+								}
+							]
 						},
 						{
 							"name": "Get Seller Products",
@@ -113,7 +213,57 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Get Seller Products",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/seller/products",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"seller",
+												"products"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Wed, 25 Dec 2024 15:15:12 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "700"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"name\": \"Google Pixel 2\",\n            \"description\": \"Hp\",\n            \"category_id\": 2,\n            \"image_url\": \"411asas1\",\n            \"price\": 400,\n            \"user_id\": 27,\n            \"created_at\": \"2024-12-25T19:46:19.636935+07:00\",\n            \"updated_at\": \"2024-12-25T19:46:19.636935+07:00\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Google Pixel 2\",\n            \"description\": \"Hp\",\n            \"category_id\": 2,\n            \"image_url\": \"411asas1\",\n            \"price\": 400,\n            \"user_id\": 27,\n            \"created_at\": \"2024-12-25T19:47:48.785363+07:00\",\n            \"updated_at\": \"2024-12-25T19:47:48.785363+07:00\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"MacbookPro 16 inch\",\n            \"description\": \"refurbished laptop\",\n            \"category_id\": 2,\n            \"image_url\": \"411asas1\",\n            \"price\": 1400,\n            \"user_id\": 29,\n            \"created_at\": \"2024-12-25T22:13:54.087938+07:00\",\n            \"updated_at\": \"2024-12-25T22:15:06.469928+07:00\"\n        }\n    ],\n    \"message\": \"Success get products\"\n}"
+								}
+							]
 						},
 						{
 							"name": "Edit Product",
@@ -141,7 +291,58 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Edit Product",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\":\"MacbookPro 16 inch\",\n    \"description\":\"refurbished laptop\",\n    \"category_id\": 2,\n    \"image_url\":\"image_url\",\n    \"price\":1400\n }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/seller/products/5",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"seller",
+												"products",
+												"5"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Wed, 25 Dec 2024 15:15:06 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "275"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"id\": 5,\n        \"name\": \"MacbookPro 16 inch\",\n        \"description\": \"refurbished laptop\",\n        \"category_id\": 2,\n        \"image_url\": \"411asas1\",\n        \"price\": 1400,\n        \"user_id\": 29,\n        \"created_at\": \"2024-12-25T22:13:54.087938+07:00\",\n        \"updated_at\": \"2024-12-25T22:15:06.4699281+07:00\"\n    },\n    \"message\": \"Success edit product\"\n}"
+								}
+							]
 						},
 						{
 							"name": "Delete Product",
@@ -169,7 +370,58 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Delete Product",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/seller/products/4",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"seller",
+												"products",
+												"4"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Wed, 25 Dec 2024 15:14:13 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "47"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {},\n    \"message\": \"Success delete product \"\n}"
+								}
+							]
 						},
 						{
 							"name": "Create Category",
@@ -196,7 +448,57 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Create Category",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\":\"Furniture\",\n    \"parent_id\": null,\n    \"image_url\":\"testt\",\n    \"display_order\": 1\n }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/seller/categories",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"seller",
+												"categories"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Wed, 25 Dec 2024 15:12:15 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "55"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": null,\n    \"message\": \"Category created successfully\"\n}"
+								}
+							]
 						},
 						{
 							"name": "Edit Category",
@@ -205,7 +507,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\":\"Minuman\",\n    \"parent_id\": null,\n    \"image_url\":\"1111111\",\n    \"display_order\": 1\n }",
+									"raw": "{\n    \"name\":\"Dekorasi\",\n    \"parent_id\": null,\n    \"image_url\":\"1111111\",\n    \"display_order\": 1\n }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -213,18 +515,69 @@
 									}
 								},
 								"url": {
-									"raw": "{{BASE_URL}}/seller/categories/2",
+									"raw": "{{BASE_URL}}/seller/categories/4",
 									"host": [
 										"{{BASE_URL}}"
 									],
 									"path": [
 										"seller",
 										"categories",
-										"2"
+										"4"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Edit Category",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\":\"Dekorasi\",\n    \"parent_id\": null,\n    \"image_url\":\"1111111\",\n    \"display_order\": 1\n }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/seller/categories/4",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"seller",
+												"categories",
+												"4"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Wed, 25 Dec 2024 15:13:28 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "234"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"id\": 4,\n        \"name\": \"Dekorasi\",\n        \"parent_id\": 0,\n        \"image_url\": \"1111111\",\n        \"products\": null,\n        \"display_order\": 1,\n        \"created_at\": \"2024-12-25T22:12:15.04691+07:00\",\n        \"updated_at\": \"2024-12-25T22:13:28.672536+07:00\"\n    },\n    \"message\": \"Success edit category\"\n}"
+								}
+							]
 						},
 						{
 							"name": "Delete Category",
@@ -252,7 +605,58 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Delete Category",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/seller/categories/4",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"seller",
+												"categories",
+												"4"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Wed, 25 Dec 2024 15:14:01 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "54"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": null,\n    \"message\": \"Category delete successfully\"\n}"
+								}
+							]
 						},
 						{
 							"name": "Create Product",
@@ -279,7 +683,57 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Create Product",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\":\"Meja bekas\",\n    \"description\":\"Meja\",\n    \"category_id\": 2,\n    \"image_url\":\"411asas1\",\n    \"price\":200000\n }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/seller/products",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"seller",
+												"products"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Wed, 25 Dec 2024 15:13:54 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "54"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": null,\n    \"message\": \"Product created successfully\"\n}"
+								}
+							]
 						}
 					]
 				},
@@ -320,7 +774,57 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "User Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"zildjianvito1111gmail.com\",\r\n    \"password\": \"vito12121\",\r\n    \"phone\": \"1212121\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/users/register",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 25 Dec 2024 15:09:59 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "241"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InppbGRqaWFudml0bzExMTFnbWFpbC5jb20iLCJleHAiOjE3Mzc3MzEzOTksInJvbGUiOiJidXllciIsInVzZXJfaWQiOjI5fQ.2kCVR_94tCEhVduM_kH-gygF_QwywGyTK3PdWQp8HhY\"\n    },\n    \"message\": \"Register success\"\n}"
+						}
+					]
 				},
 				{
 					"name": "User Login",
@@ -347,7 +851,57 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "User Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"zildjianvito1111gmail.com\",\r\n    \"password\": \"vito12121\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/users/login",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 25 Dec 2024 15:10:25 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "238"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InppbGRqaWFudml0bzExMTFnbWFpbC5jb20iLCJleHAiOjE3Mzc3MzE0MjYsInJvbGUiOiJidXllciIsInVzZXJfaWQiOjI5fQ.BnKcX8Vnzk94ALwKb-BESH8HUvhHa8fwCy6u6IVor2I\"\n    },\n    \"message\": \"Login success\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Verification Code",
@@ -365,7 +919,48 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Verification Code",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/users/verify",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users",
+										"verify"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 25 Dec 2024 15:10:50 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"code\": 827314\n    },\n    \"message\": \"Success getting verification code\"\n}"
+						}
+					]
 				},
 				{
 					"name": "User Verify Code",
@@ -374,7 +969,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"code\": 9906122\r\n}",
+							"raw": "{\r\n    \"code\": 827314\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -392,7 +987,57 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "User Verify Code",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": 827314\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/users/verify",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users",
+										"verify"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 25 Dec 2024 15:11:04 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {},\n    \"message\": \"Verification successfully\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -429,7 +1074,56 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Products",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/products",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 25 Dec 2024 15:13:08 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "467"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"name\": \"Google Pixel 2\",\n            \"description\": \"Hp\",\n            \"category_id\": 2,\n            \"image_url\": \"411asas1\",\n            \"price\": 400,\n            \"user_id\": 27,\n            \"created_at\": \"2024-12-25T19:46:19.636935+07:00\",\n            \"updated_at\": \"2024-12-25T19:46:19.636935+07:00\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Google Pixel 2\",\n            \"description\": \"Hp\",\n            \"category_id\": 2,\n            \"image_url\": \"411asas1\",\n            \"price\": 400,\n            \"user_id\": 27,\n            \"created_at\": \"2024-12-25T19:47:48.785363+07:00\",\n            \"updated_at\": \"2024-12-25T19:47:48.785363+07:00\"\n        }\n    ],\n    \"message\": \"Success get products\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Product by ID",
@@ -462,7 +1156,57 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Product by ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/products/3",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 25 Dec 2024 15:13:03 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "252"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 3,\n        \"name\": \"Google Pixel 2\",\n        \"description\": \"Hp\",\n        \"category_id\": 2,\n        \"image_url\": \"411asas1\",\n        \"price\": 400,\n        \"user_id\": 27,\n        \"created_at\": \"2024-12-25T19:46:19.636935+07:00\",\n        \"updated_at\": \"2024-12-25T19:46:19.636935+07:00\"\n    },\n    \"message\": \"Success get product\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Categories",
@@ -494,7 +1238,56 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/categories",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 25 Dec 2024 15:12:38 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "617"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"name\": \"Minuman\",\n            \"parent_id\": 0,\n            \"image_url\": \"1111111\",\n            \"products\": null,\n            \"display_order\": 1,\n            \"created_at\": \"2024-12-24T21:49:51.904434+07:00\",\n            \"updated_at\": \"2024-12-24T21:50:31.490801+07:00\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Makanan\",\n            \"parent_id\": 0,\n            \"image_url\": \"testt\",\n            \"products\": null,\n            \"display_order\": 1,\n            \"created_at\": \"2024-12-24T21:51:58.612704+07:00\",\n            \"updated_at\": \"2024-12-24T21:51:58.612704+07:00\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Furniture\",\n            \"parent_id\": 0,\n            \"image_url\": \"testt\",\n            \"products\": null,\n            \"display_order\": 1,\n            \"created_at\": \"2024-12-25T22:12:15.04691+07:00\",\n            \"updated_at\": \"2024-12-25T22:12:15.04691+07:00\"\n        }\n    ],\n    \"message\": \"Success get categories\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Category by ID",
@@ -527,7 +1320,57 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Category by ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/categories/4",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"categories",
+										"4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 25 Dec 2024 15:12:53 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "231"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 4,\n        \"name\": \"Furniture\",\n        \"parent_id\": 0,\n        \"image_url\": \"testt\",\n        \"products\": null,\n        \"display_order\": 1,\n        \"created_at\": \"2024-12-25T22:12:15.04691+07:00\",\n        \"updated_at\": \"2024-12-25T22:12:15.04691+07:00\"\n    },\n    \"message\": \"Success get category\"\n}"
+						}
+					]
 				}
 			],
 			"auth": {
@@ -588,7 +1431,56 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Create Cart",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n \"qty\": 1,\n \"product_id\": 5\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/carts",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"carts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 25 Dec 2024 15:18:18 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "268"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"user_id\": 29,\n            \"product_id\": 5,\n            \"name\": \"MacbookPro 16 inch\",\n            \"image_url\": \"411asas1\",\n            \"seller_id\": 29,\n            \"price\": 1400,\n            \"qty\": 1,\n            \"created_at\": \"2024-12-25T22:18:18.445321+07:00\",\n            \"updated_at\": \"2024-12-25T22:18:18.445321+07:00\"\n        }\n    ],\n    \"message\": \"Cart created successfully\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Cart Items",
@@ -617,7 +1509,56 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Cart Items",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/carts",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"carts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 25 Dec 2024 15:18:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "259"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"user_id\": 29,\n            \"product_id\": 5,\n            \"name\": \"MacbookPro 16 inch\",\n            \"image_url\": \"411asas1\",\n            \"seller_id\": 29,\n            \"price\": 1400,\n            \"qty\": 1,\n            \"created_at\": \"2024-12-25T22:18:18.445321+07:00\",\n            \"updated_at\": \"2024-12-25T22:18:18.445321+07:00\"\n        }\n    ],\n    \"message\": \"Success get cart\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Update Cart",
@@ -643,7 +1584,56 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Update Cart",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n \"qty\": 2,\n \"product_id\":5\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/carts",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"carts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 25 Dec 2024 15:18:54 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "268"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"user_id\": 29,\n            \"product_id\": 5,\n            \"name\": \"MacbookPro 16 inch\",\n            \"image_url\": \"411asas1\",\n            \"seller_id\": 29,\n            \"price\": 1400,\n            \"qty\": 2,\n            \"created_at\": \"2024-12-25T22:18:18.445321+07:00\",\n            \"updated_at\": \"2024-12-25T22:18:55.407675+07:00\"\n        }\n    ],\n    \"message\": \"Cart created successfully\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -677,7 +1667,56 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/orders",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 25 Dec 2024 15:19:19 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "276"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"user_id\": 29,\n            \"status\": \"\",\n            \"amount\": 2800,\n            \"transaction_id\": \"TXN12345\",\n            \"order_ref_number\": 15476165,\n            \"payment_id\": \"PAY12345\",\n            \"items\": null,\n            \"created_at\": \"2024-12-25T22:19:15.18533+07:00\",\n            \"updated_at\": \"2024-12-25T22:19:15.18533+07:00\"\n        }\n    ],\n    \"message\": \"Success get orders\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Order By Id",
@@ -707,10 +1746,60 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Order By Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/orders/2",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"orders",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 25 Dec 2024 15:19:41 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "494"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 2,\n        \"user_id\": 29,\n        \"status\": \"\",\n        \"amount\": 2800,\n        \"transaction_id\": \"TXN12345\",\n        \"order_ref_number\": 15476165,\n        \"payment_id\": \"PAY12345\",\n        \"items\": [\n            {\n                \"id\": 2,\n                \"order_id\": 2,\n                \"product_id\": 5,\n                \"name\": \"MacbookPro 16 inch\",\n                \"image_url\": \"411asas1\",\n                \"seller_id\": 29,\n                \"price\": 1400,\n                \"qty\": 2,\n                \"CreatedAt\": \"2024-12-25T22:19:15.185077+07:00\",\n                \"UpdatedAt\": \"2024-12-25T22:19:15.185077+07:00\"\n            }\n        ],\n        \"created_at\": \"2024-12-25T22:19:15.18533+07:00\",\n        \"updated_at\": \"2024-12-25T22:19:15.18533+07:00\"\n    },\n    \"message\": \"Success get order by id\"\n}"
+						}
+					]
 				},
 				{
-					"name": "New Request",
+					"name": "Create Order",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -733,7 +1822,56 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/orders",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 25 Dec 2024 15:19:14 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": 15476165,\n    \"message\": \"Order created successfully\"\n}"
+						}
+					]
 				}
 			]
 		}
@@ -743,7 +1881,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InppbGRqaWFudml0bzExMWdtYWlsLmNvbSIsImV4cCI6MTczNzcyMjgzMywicm9sZSI6ImJ1eWVyIiwidXNlcl9pZCI6Mjh9.On2O9RdfUwGPXN2gSg0D7ys1Ty8n1SReuvf4Vo3q_zM",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InppbGRqaWFudml0bzExMTFnbWFpbC5jb20iLCJleHAiOjE3Mzc3MzE0ODYsInJvbGUiOiJzZWxsZXIiLCJ1c2VyX2lkIjoyOX0.OzrvNd6UFxagDYmdwhawZvT9xqSKnqG6HK5hnfbjRB0",
 				"type": "string"
 			}
 		]
