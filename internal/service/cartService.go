@@ -2,6 +2,7 @@ package service
 
 import (
 	"errors"
+	"fmt"
 	"jual-beli-barang-bekas/config"
 	"jual-beli-barang-bekas/internal/domain"
 	"jual-beli-barang-bekas/internal/dto"
@@ -30,7 +31,11 @@ func (s CartService) AddItemToCart(input any, u domain.User) ([]*domain.Cart, er
 }
 
 func (s CartService) CreateCart(input dto.CreateCartRequest, u domain.User) ([]domain.Cart, error) {
-	cart, _ := s.Repo.GetCartItem(u.ID, input.ProductId)
+	cart, err := s.Repo.GetCartItem(u.ID, input.ProductId)
+	fmt.Println(cart)
+	if err != nil {
+		return nil, errors.New("product not found")
+	}
 
 	if cart.ID > 0 {
 		if input.ProductId == 0 {

@@ -17,9 +17,10 @@ func SetupCartRoutes(rh *rest.RestHandler) {
 	app := rh.App
 
 	service := service.CartService{
-		Repo:   repository.NewCartRepository(rh.DB),
-		Auth:   rh.Auth,
-		Config: rh.Config,
+		Repo:        repository.NewCartRepository(rh.DB),
+		CatalogRepo: repository.NewCatalogRepository(rh.DB),
+		Auth:        rh.Auth,
+		Config:      rh.Config,
 	}
 
 	handler := CartHandler{
@@ -27,7 +28,8 @@ func SetupCartRoutes(rh *rest.RestHandler) {
 	}
 
 	app.Get("/cart", rh.Auth.Authorize, handler.GetCart)
-	app.Post("/cart", rh.Auth.Authorize, handler.AddItemToCart)
+	app.Post("/cart", rh.Auth.Authorize, handler.ManageItemOnCart)
+	app.Patch("/cart", rh.Auth.Authorize, handler.ManageItemOnCart)
 }
 
 func (h *CartHandler) GetCart(ctx *fiber.Ctx) error {
@@ -41,7 +43,7 @@ func (h *CartHandler) GetCart(ctx *fiber.Ctx) error {
 	return rest.SuccessResponse(ctx, "Success get cart", cart)
 }
 
-func (h *CartHandler) AddItemToCart(ctx *fiber.Ctx) error {
+func (h *CartHandler) ManageItemOnCart(ctx *fiber.Ctx) error {
 	req := dto.CreateCartRequest{}
 
 	err := ctx.BodyParser(&req)
