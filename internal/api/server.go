@@ -23,7 +23,7 @@ func StartServer(config config.AppConfig) {
 	}
 
 	// Migration
-	err = db.AutoMigrate(&domain.User{}, &domain.BankAccount{}, &domain.Category{}, &domain.Product{}, &domain.Address{}, &domain.Cart{})
+	err = db.AutoMigrate(&domain.User{}, &domain.BankAccount{}, &domain.Category{}, &domain.Product{}, &domain.Address{}, &domain.Cart{}, &domain.Order{}, &domain.OrderItem{})
 	if err != nil {
 		log.Fatalf("Error migration %v", err)
 	}
