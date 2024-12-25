@@ -30,14 +30,12 @@ func (s CartService) AddItemToCart(input any, u domain.User) ([]*domain.Cart, er
 }
 
 func (s CartService) CreateCart(input dto.CreateCartRequest, u domain.User) ([]domain.Cart, error) {
-	// Check if the cart is Exist
 	cart, _ := s.Repo.GetCartItem(u.ID, input.ProductId)
 
 	if cart.ID > 0 {
 		if input.ProductId == 0 {
 			return nil, errors.New("please provide a valid product id")
 		}
-		// Delete the cart item
 		if input.Qty < 1 {
 			err := s.Repo.DeleteCartById(cart.ID)
 			if err != nil {
@@ -45,7 +43,6 @@ func (s CartService) CreateCart(input dto.CreateCartRequest, u domain.User) ([]d
 				return nil, errors.New("error on deleting cart item")
 			}
 		} else {
-			// Update the cart item
 			cart.Qty = input.Qty
 			err := s.Repo.UpdateCart(cart)
 			if err != nil {

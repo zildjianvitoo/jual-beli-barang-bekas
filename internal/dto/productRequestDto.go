@@ -6,5 +6,4 @@ type CreateProductRequest struct {
 	CategoryId  uint    `json:"category_id"`
 	ImageUrl    string  `json:"image_url"`
 	Price       float64 `json:"price"`
-	Stock       int     `json:"stock"`
 }

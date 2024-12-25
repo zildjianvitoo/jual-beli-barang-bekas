@@ -121,9 +121,9 @@ func (a Auth) Authorize(ctx *fiber.Ctx) error {
 
 	authHeader := ctx.Get("Authorization")
 	if authHeader == "" {
-		return ctx.Status(401).JSON(&fiber.Map{
-			"message": "authorization failed",
-			"reason":  "missing Authorization header",
+		return ctx.Status(401).JSON(fiber.Map{
+			"message": "Authorization failed",
+			"reason":  "Missing Authorization header",
 		})
 	}
 
@@ -133,8 +133,8 @@ func (a Auth) Authorize(ctx *fiber.Ctx) error {
 		if err != nil {
 			reason = err.Error()
 		}
-		return ctx.Status(401).JSON(&fiber.Map{
-			"message": "authorization failed",
+		return ctx.Status(401).JSON(fiber.Map{
+			"message": "Authorization failed",
 			"reason":  reason,
 		})
 	}
@@ -155,17 +155,17 @@ func (a Auth) AuthorizeSeller(ctx *fiber.Ctx) error {
 	user, err := a.VerifyToken(authHeader[0])
 
 	if err != nil {
-		return ctx.Status(401).JSON(&fiber.Map{
+		return ctx.Status(401).JSON(fiber.Map{
 			"message": "authorization failed",
-			"reason":  err,
+			"reason":  "You are not seller",
 		})
 	} else if user.ID > 0 && user.UserType == domain.SELLER {
 		ctx.Locals("user", user)
 		return ctx.Next()
 	} else {
-		return ctx.Status(401).JSON(&fiber.Map{
+		return ctx.Status(401).JSON(fiber.Map{
 			"message": "authorization failed",
-			"reason":  errors.New("please join seller program to manage products"),
+			"reason":  "Please join seller program to manage products",
 		})
 	}
 

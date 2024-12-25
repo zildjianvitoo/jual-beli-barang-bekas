@@ -1,14 +1,14 @@
 # Requirements
 
 - PostgreSQL
-- Go >= ^1.22.2
+- Go >= ^1.23.4
 - use air library to run this project [air github & docs](https://github.com/air-verse/air)
 
 # How to run
 
 1. Copy the `.env.example` to `.env` and adjust the value
 2. Open your docker desktop app
-3. Run on terminal ,change directory to this project,and run "docker compose up -d"
+3. Open your terminal, change directory to this project, and run "docker compose up -d"
 4. Run the http server with `air`
 
 # The interesting parts in this app
@@ -63,11 +63,11 @@ All of the business rules should be put here.
 I'm also using domain service terms which is comes from DDD (domain design driven)
 which is used to put business logic that not fit into a domain entity
 
-## Repositories directory
+## Repository directory
 
 This is the concrete implementations of domain repository.
 This should be specific and can be dependent and coupled to other package
-(such as postgres, redis, etc)
+(such as postgres, redis (for future improvement), etc)
 
 ## Config directory
 
