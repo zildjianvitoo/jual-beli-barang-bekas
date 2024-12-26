@@ -18,7 +18,7 @@ To make this app scalable, I built the backend system for a second-hand goods ma
 # API Documentation
 
 Please find the `Jual Beli Barang Bekas.postman_collection.json` file, and import it to your postman
-to test the API (cant publish the docs, because blocked by postman).
+to test the API (UPDATE: i already sent ticket to postman and they unblock me, here is the link of published documentation : [DOCUMENTATION](https://documenter.getpostman.com/view/28360257/2sAYJ4k2Kt)).
 
 # Directory Structure
 
